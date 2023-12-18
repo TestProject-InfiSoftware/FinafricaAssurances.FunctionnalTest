@@ -23,3 +23,84 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import '@icokie/cypress-webhooksite'
+
+Cypress.Commands.add('loginByApi', (emailUser, passwordUser) => {
+    return cy.request({
+      method: 'post',
+      url: 'https://luca-dev2.spvie.com/api/Account/Login', // baseUrl is prepend to URL
+      body: {
+        Email: emailUser,
+        Password: passwordUser,
+      },
+      headers: {
+        accept: 'application/json',
+      },
+      failOnStatusCode: false,
+    });
+  });
+  
+  //Commande personnaliser pour récupérer les informations pour certaines APIs restant ce format
+  Cypress.Commands.add('getApiAdmin', (urlApi, token) => {
+    return cy.request({
+      url: urlApi, // baseUrl is prepend to URL
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        Host: 'gestion-sinistre.suntelecoms.com',
+        Origin: 'https://gestion-sinistre.suntelecoms.com',
+        Referer: 'https://gestion-sinistre.suntelecoms.com/',
+      },
+      failOnStatusCode: false,
+      timeout: 300000
+    });
+  });
+  
+  Cypress.Commands.add('postApiAdmin', (urlApi, token, data) => {
+    return cy.request({
+      url: urlApi, // baseUrl is prepend to URL
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        Host: 'gestion-sinistre.suntelecoms.com',
+        Origin: 'https://gestion-sinistre.suntelecoms.com',
+        Referer: 'https://gestion-sinistre.suntelecoms.com/',
+      },
+      body: data,
+      failOnStatusCode: false,
+      timeout: 300000
+    });
+  });
+  
+
+   //Commande personnaliser pour récupérer les informations pour certaines APIs restant ce format
+   Cypress.Commands.add('getApiClient', (urlApi) => {
+    return cy.request({
+      url: urlApi, // baseUrl is prepend to URL
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        Host: 'gestion-sinistre.suntelecoms.com',
+        Origin: 'https://gestion-sinistre.suntelecoms.com',
+        Referer: 'https://gestion-sinistre.suntelecoms.com/',
+      },
+      failOnStatusCode: false,
+      timeout: 300000
+    });
+  });
+  
+  Cypress.Commands.add('postApiClient', (urlApi, data) => {
+    return cy.request({
+      url: urlApi, // baseUrl is prepend to URL
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        Host: 'gestion-sinistre.suntelecoms.com',
+        Origin: 'https://gestion-sinistre.suntelecoms.com',
+        Referer: 'https://gestion-sinistre.suntelecoms.com/',
+      },
+      body: data,
+      failOnStatusCode: false,
+      timeout: 300000
+    });
+  });

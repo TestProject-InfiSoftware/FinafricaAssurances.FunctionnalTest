@@ -2,6 +2,7 @@
   "devDependencies": {
     "@faker-js/faker": "^8.3.1",
     "cypress": "^13.6.1",
-    "faker": "^6.6.6"
+    "faker": "^6.6.6",
+    "mailslurp-client": "^15.17.4"
   }
 }
